@@ -1,0 +1,144 @@
+input[type="radio"] {
+    appearance:none;
+    margin-right: 5px;
+    width: 14px;
+    height: 14px;
+    background: #eeeeee;
+    box-shadow:
+      inset 0 0 0 .2em white,
+      0 0 0 .3em;
+    border-radius: 50%;
+    transition: .2s;
+    cursor:pointer;
+    cursor: hand;
+    color: #363945;
+  
+    &:hover,
+    &:checked {
+      background: #363945;
+      box-shadow:
+      inset 0 0 0 .3em white,
+      0 0 0 .3em;
+    }
+    
+    &:checked {
+      background: #03A9F4;
+      box-shadow:
+        inset 0 0 0 .2em white,
+        0 0 0 .3em #03A9F4;
+    } 
+  
+    &:focus { outline: 0; }
+  }
+
+  label.form-check-label{
+    margin-right: 20px;
+    cursor: hand;
+    cursor: pointer;
+  }
+
+  .group-radio{
+    margin-top: 10px;
+  }
+
+  .margen-btn{
+    margin-top: 5px;
+  }
+
+  .selected{
+    color: #01579b;
+  }
+
+// Card
+@media (max-width: 991px){
+.market-update-gd {
+    // float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.market-update-right{
+  margin-bottom: 10px;
+}
+.title-card{
+  margin-top: 10px;
+}
+}
+
+@media (max-width: 991px){
+.market-update-gd {
+    // float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.market-update-right{
+  margin-bottom: 10px;
+}
+
+}
+@media (max-width: 1024px){
+.market-update-gd {
+    padding: 0px;
+}
+}
+
+.market-update-gd{
+  color: white;
+  font-weight: bold;
+}
+
+
+.market-update-block.clr-block-3 {
+ 
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+}
+
+.market-update-block.km{
+  background: #4caf50;
+}
+
+.market-update-right.km{
+  color: #4caf50;
+}
+
+.market-update-block.mejor{
+  background: #03a9f4;
+}
+
+.market-update-right.mejor{
+  color: #03a9f4;
+}
+
+.market-update-right i.fa.fa-blind,  .market-update-right i.fa.fa-user{
+  margin-top: 10px;
+  font-size: 2.5em;
+  width: 64px;
+  height: 64px;
+  background: #fff;
+  text-align: center;
+  border-radius: 33px;
+  -webkit-border-radius: 33px;
+  -moz-border-radius: 33px;
+  -o-border-radius: 33px;
+  line-height: 1.7em;
+}
+
+.modal-body{
+  margin-left: 20px;
+}
+
+// .table-striped>tbody>tr:nth-of-type(odd) td{
+//   background-color: #d9edf7;
+// }
+
+
+
+
+// .pe-7s-cloud-download{
+//   font-size: small;
+// }

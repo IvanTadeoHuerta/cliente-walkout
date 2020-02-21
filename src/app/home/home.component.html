@@ -1,0 +1,131 @@
+<div class="main-content" >
+    <app-loader *ngIf="loading"></app-loader>
+    <div class="container-fluid" *ngIf="!loading">
+        <div class="row">
+            <form action="">
+                <fieldset>
+                    <legend>PARAMETROS DE BUSQUEDA:</legend>
+                    <div class="col-md-4">
+                        <select class="proyectos" [(ngModel)]="proyectoSelected" (change)="limpiarBusqueda()"
+                            name="proyectos">
+                            <option data-tokens="proyecto.nombre" *ngFor="let proyecto of proyectos"
+                                [value]="proyecto.id_proyecto">{{ proyecto.nombre }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="group-radio">
+                            <input class="medium" type="radio" name="tipo_reporte" id="tipo_reporte1" value="1"
+                                (change)="cambiaTipo(1)" />
+                            <label [ngClass]="{'form-check-label': true, 'selected': tipo_reporte == 1 }"
+                                for="tipo_reporte1">
+                                SEMANAL
+                            </label>
+                            <input class="medium" type="radio" name="tipo_reporte" id="tipo_reporte2" value="2"
+                                (change)="cambiaTipo(2)" />
+                            <label [ngClass]="{'form-check-label': true, 'selected': tipo_reporte == 2 }"
+                                for="tipo_reporte2">
+                                GLOBAL
+                            </label>
+                            <input class="medium" type="radio" name="tipo_reporte" id="tipo_reporte3" value="3"
+                                (change)="cambiaTipo(3)" />
+                            <label [ngClass]="{'form-check-label': true, 'selected': tipo_reporte == 3 }"
+                                for="tipo_reporte3">
+                                DIA
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-1 text-center" *ngIf="tipo_reporte == 3">
+                        <div class="margen-btn">
+                            <button class="btn btn-info btn-sm" (click)="openModal()">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <div class="margen-btn">
+                            <button class="btn btn-primary btn-sm" (click)="generaRpt()">GENERAR REPORTE</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="row" *ngIf="showRpt">
+            <br>
+            <div class="col-md-12">
+                <h6>RESULTADOS DEL REPORTE:</h6>
+            </div>
+        </div>
+        <div class="row" *ngIf="showRpt && tipo_reporte != 1">
+            <br>
+            <div class="col-md-4 col-sm-12">
+                <div class="market-update-gd">
+                    <div class="market-update-block clr-block-3 km">
+                        <div class="col-md-8 col-sm-8 market-update-left">
+                            <h5 class="title-card">
+                                <span id="kilometraje_total">0</span>&nbsp;KM
+                            </h5>
+                            <h6>{{ titulo_1er_card }}</h6>
+                            <small>Km registrados</small>
+                        </div>
+                        <div class="col-md-4 col-sm-4 market-update-right km">
+                            <i class="fa fa-blind"> </i>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="market-update-gd">
+                    <div class="market-update-block clr-block-3 mejor">
+                        <div class="col-md-8  col-sm-8 market-update-left">
+                            <h5>{{ mejor_walker }}</h5>
+                            <h6>{{ titulo_2da_card }}</h6>
+                            <small>Kilometraje: {{ mejor_km }} KM</small>
+                        </div>
+                        <div class="col-md-4 col-sm-4 market-update-right mejor">
+                            <i class="fa fa-user"> </i>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <br>
+            <div class="col-md-12" *ngIf="showRpt && tipo_reporte != 1">
+                <div id="container" style="height:400px;"></div>
+            </div>
+        </div>
+        <div class="row" *ngIf="showRpt && tipo_reporte != 1">
+            <br>
+            <app-rpt-table [tipo_reporte]="tipo_reporte" [titulo_1er_card]="titulo_1er_card" [datos]="reporte" [isLast]="true">
+            </app-rpt-table>
+        </div>
+        <ng-template [ngIf]="showRpt && tipo_reporte == 1">
+            <div class="row" *ngFor="let g of graficas; let i = index">
+                <br>
+                <div class="col-md-12">
+                    <div [id]="'container'+i" style="height:300px;"></div>
+                </div>
+                <br>
+                <app-rpt-table [tipo_reporte]="tipo_reporte" [titulo_1er_card]="titulo_1er_card" [datos]="g[0]" [info]="g[1]" [isLast]="(i+1) == graficas.length">
+                </app-rpt-table>
+            </div>
+        </ng-template>
+        <!-- modal calendario -->
+        <div class="modal fade" id="modalCalendario" tabindex="-1" role="dialog" data-backdrop="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Seleccione día</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="calendario"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fin modal calendario -->
+    </div>
+</div>
